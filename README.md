@@ -34,7 +34,9 @@ However, this will not work on any computer that isn't running OS X. To make an 
 2. Format it as FAT12. You may do this however you wish, or in fact you may not need to do it at all, depending on how you proceed.
 3. Copy the boot loader onto the image. To do this, you may either copy the whole thing over the image `dd conv=notrunc if=bin/bootloader.bin of=img/boot.img`, required if you haven't formatted the image, or by copying the first 3 bytes and bytes 0x3E through to 0x1FF onto the same location on the image. This will preserve the properties of the original image
 4. Copy `hasmos.bin` onto the image
-5. Run the image! (It currently must be treated as a floppy)
+5. Run the OS from the image. This can be through a VM, by using the image as a virtual floppy, or on an *actual* floppy disk! Right now, booting from USB seems to be very hit-and-miss.
+
+If you are on an OS X system, you can use `make run` to assemble the image, attach it to the VM, and run the VM. First you need to have a blank virtualbox VM set up, and put the UID into the makefile.
 
 #Resources
 #####[Wikipedia - BIOS Interrupts](https://en.wikipedia.org/wiki/BIOS_interrupt_call)
