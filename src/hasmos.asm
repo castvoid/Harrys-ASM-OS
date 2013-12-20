@@ -25,7 +25,7 @@ begin:
         call    intro_text
 
 cmdprompt:
-        mov     si, str_prompt              ; display the str_prompt
+        mov     si, str_prompt          ; display the str_prompt
         call    print_string
 
         mov     di, buffer              ; set up the buffer for the input line
@@ -83,7 +83,7 @@ cmdprompt:
         call    print_color_string
         mov     si,newline
         call    print_color_string
-        jmp     cmdprompt              ; go back again, ready for another command.
+        jmp     cmdprompt               ; go back again, ready for another command.
 ; --------------------------------------------
 .ls_cmd
         mov     si, str_msg_ls
@@ -114,7 +114,7 @@ cmdprompt:
 ; --------------------------------------------
 .reboot_cmd
         call    display_confirmation
-        int     0x19                    ;Try to reboot. 90% of the time, it works every time
+        int     0x19                    ; Try to reboot. 90% of the time, it works every time
 ; --------------------------------------------
 .listgames_cmd
         mov     si,str_games_list
@@ -134,7 +134,7 @@ draw_cmd
         cmp     cx, 640
         jge     .incY                   ; if we're at the end of the screen width, go to next line
         cmp     dx, 350 
-        jge     cmdprompt                ; if we're at the end of the screen height, return to the str_prompt
+        jge     cmdprompt               ; if we're at the end of the screen height, return to the str_prompt
         int     0x10                    ; draw it
         inc     cx                      ; increment x
         jmp     .rec_draw
@@ -181,10 +181,10 @@ clearScreen:
 intro_text:
         mov     bx, 0x0A                ; we want the colour to be intense green
                                         ; bx is 8-bit, bits 3-0 are intensity,r,g,b. 5:reverse video, 6:use as bg colour, 7:blink text
-        mov     si, str_intro1           ; load address of our message into si
+        mov     si, str_intro1          ; load address of our message into si
         call    print_color_string      ; print the message
         mov     bx, 0x0F                ; this one should be white (intense red green + blue)
-        mov     si, str_intro2           ; load address of our message
+        mov     si, str_intro2          ; load address of our message
         call    print_color_string      ; print the message
         ret
 ; --------------------------------------------
@@ -195,7 +195,7 @@ display_confirmation:
         mov     bl,0x04
         int     0x10
 
-        mov     si,str_msg_confirm          ; print confirm message
+        mov     si,str_msg_confirm      ; print confirm message
         mov     bx,0x0F                 ; in white
         call    print_color_string
 .getChar
@@ -212,18 +212,18 @@ display_confirmation:
         call    clearScreen             ; clear the screen again
         call    intro_text              ; put the intro text back
 
-        mov     si,str_msg_proceeding       ; say 'proceeding'
+        mov     si,str_msg_proceeding   ; say 'proceeding'
         call    print_string
         ret                             ; return to the previous command
 .no
         call    clearScreen             ; must be able to sort this mess out!
         call    intro_text
 
-        mov     si,str_msg_aborted          ; Say 'aborted'
+        mov     si,str_msg_aborted      ; Say 'aborted'
         mov     bx,0x04                 ; in red
         call    print_color_string
 
-        jmp     cmdprompt              ; go back to recieve a different command
+        jmp     cmdprompt               ; go back to recieve a different command
 ; --------------------------------------------
 print_color_string:
         lodsb       ; AL = [DS:SI]      ; grabs a byte from SI
@@ -325,3 +325,4 @@ strcmp:
  .done:  
         stc                             ; equal, set the carry flag
         ret
+
