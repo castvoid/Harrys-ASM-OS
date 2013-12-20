@@ -37,7 +37,7 @@ cmdprompt:
 
 
         mov     si, buffer              ; put the buffer in si
-        mov     di, str_ls_cmd              ; put the string for the command into di
+        mov     di, str_ls_cmd          ; put the string for the command into di
         call    strcmp                  ; compare them
         jc      .ls_cmd                 ; if they are the same, run the command
 
