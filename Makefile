@@ -23,12 +23,15 @@ help:
 		@echo "Usage: make [build | buildbl | image | run | inspect] " 
 
 build:
+		@if [ ! -d "$(CURDIR)/bin" ]; then echo "Creating $(CURDIR)/bin" && mkdir "$(CURDIR)/bin"; fi
 		@echo "Building $(OS-BIN-FILENAME)"
 		@$(ASM-COMPILER) "$(CURDIR)/src/$(OS-ASM-FILENAME)" -f bin -o "$(CURDIR)/bin/$(OS-BIN-FILENAME)"	
 buildbl:
+		@if [ ! -d "$(CURDIR)/bin" ]; then echo "Creating $(CURDIR)/bin" && mkdir "$(CURDIR)/bin"; fi
 		@echo "Building $(BOOTLOADER-BIN-FILENAME)"
 		@$(ASM-COMPILER) "src/$(BOOTLOADER-ASM-FILENAME)" -f bin -o "bin/$(BOOTLOADER-BIN-FILENAME)"
 image: build buildbl
+		@if [ ! -d "$(CURDIR)/img" ]; then echo "Creating $(CURDIR)/img" && mkdir "$(CURDIR)/img"; fi
 		@echo "Creating $(IMG-OUTPUT-NAME)"
 		@dd if=/dev/zero of="img/$(IMG-OUTPUT-NAME)" bs=1k count=1440 >& /dev/null
 		@dd conv=notrunc if="bin/$(BOOTLOADER-BIN-FILENAME)" of="img/$(IMG-OUTPUT-NAME)" >& /dev/null
@@ -43,7 +46,7 @@ image: build buildbl
 
 run: image
 		@/usr/bin/VBoxManage storageattach "$(VIRTUALBOX-VM-ID)" --storagectl Floppy --device 0 --type fdd --medium "img/$(IMG-OUTPUT-NAME)"
-		@@echo "Running VM..."
+		@echo "Running VM..."
 		@/usr/bin/VirtualBox -startvm "$(VIRTUALBOX-VM-ID)"
 
 inspect: image
