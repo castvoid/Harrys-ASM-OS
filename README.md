@@ -50,3 +50,5 @@ If you are on an OS X system, you can use `make run` to assemble the image, atta
 #####[James Molloy's kernel development tutorials](khttp://www.jamesmolloy.co.uk/tutorial_html/index.html)
 
 #####[Brandon F.'s *Bona Fide OS Development*](http://www.osdever.net/bkerndev/index.php)
+
+#####[Arjun Sreedharan's Kernel 101](http://arjunsreedharan.org/post/82710718100/kernel-101-lets-write-a-kernel)
