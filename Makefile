@@ -20,7 +20,7 @@ ASM-COMPILER=/usr/bin/nasm
 
 help:
 		@echo "Makefile for Harry's ASM Operating System."
-		@echo "Usage: make [build | buildimg | run | inspect] " 
+		@echo "Usage: make [build | buildbl | image | run | inspect] " 
 
 build:
 		@echo "Building $(OS-BIN-FILENAME)"
