@@ -3,8 +3,10 @@ Harry's ASM Operating System
 
 **Warning**: This project is intended for my own learning. The code in here is guaranteed to be horrible, poorly commented, etc. Attempt to use it at your own risk!
 
+Also, calling this an operating system isn't completely fair at this point. This is basically the "Hello World" of operating systems and probably won't progress beyond that.
+
 ##What is the point?
-The aim is to build a functional operating system, in x86 assembly. Ideally, it will include many basic commands (date, ls, cat) and be able to interact with filesystems. It will (probably) never have any fancy features like privileges, but it's functional!
+The aim is to build a functional 'operating system', in x86 assembly. Ideally, it will include many basic commands (date, ls, cat) and be able to interact with filesystems. It will (probably) never have any fancy features like privileges, but it's functional!
 
 ##Building
 ###Main OS
